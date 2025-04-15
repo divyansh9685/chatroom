@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Couple Chat Room 💑</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #ffe9f3;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    header {
+      background: #ff7cae;
+      padding: 15px;
+      color: white;
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .chat-box {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .message {
+      max-width: 60%;
+      padding: 10px 15px;
+      border-radius: 20px;
+      font-size: 16px;
+      word-wrap: break-word;
+    }
+
+    .sender {
+      align-self: flex-end;
+      background: #ffd8e4;
+      border-bottom-right-radius: 0;
+    }
+
+    .receiver {
+      align-self: flex-start;
+      background: #d7fbe8;
+      border-bottom-left-radius: 0;
+    }
+
+    .input-area {
+      display: flex;
+      padding: 15px;
+      background: white;
+      border-top: 1px solid #ddd;
+    }
+
+    input[type="text"] {
+      flex: 1;
+      padding: 10px 15px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 20px;
+      outline: none;
+    }
+
+    button {
+      background-color: #ff7cae;
+      color: white;
+      border: none;
+      margin-left: 10px;
+      padding: 10px 20px;
+      border-radius: 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #f7609e;
+    }
+  </style>
+</head>
+<body>
+
+  <header>💬 Couple Chat Room 💖</header>
+
+  <div class="chat-box" id="chatBox">
+    <!-- Messages will appear here -->
+  </div>
+
+  <div class="input-area">
+    <input type="text" id="messageInput" placeholder="Type a message with emojis... 😍" />
+    <button onclick="sendMessage('sender')">You</button>
+    <button onclick="sendMessage('receiver')">Partner</button>
+  </div>
+
+  <script>
+    function sendMessage(type) {
+      const input = document.getElementById('messageInput');
+      const message = input.value.trim();
+      if (message === '') return;
+
+      const chatBox = document.getElementById('chatBox');
+      const msgDiv = document.createElement('div');
+      msgDiv.classList.add('message', type);
+      msgDiv.innerText = message;
+
+      chatBox.appendChild(msgDiv);
+      chatBox.scrollTop = chatBox.scrollHeight;
+      input.value = '';
+    }
+
+    document.getElementById('messageInput').addEventListener("keydown", function(e) {
+      if (e.key === "Enter") {
+        sendMessage('sender');
+      }
+    });
+  </script>
+
+</body>
+</html>
